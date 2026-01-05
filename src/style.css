@@ -1,1 +1,131 @@
 @import "tailwindcss";
+
+:root {
+    /* Dark Mode (Default) */
+    --bg-body: #0a0a12;
+    --bg-sidebar: rgba(20, 20, 31, 0.8);
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --color-text-main: #d1d5db;
+    --color-text-heading: #ffffff;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-primary: #b026ff;
+    --color-primary-glow: rgba(176, 38, 255, 0.5);
+    --color-secondary: #3b82f6;
+    --glass-blur: 24px;
+}
+
+:root.light {
+    /* Light Mode */
+    --bg-body: #f1f5f9;
+    /* Slate-100 */
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --color-text-main: #64748b;
+    /* Slate-500 */
+    --color-text-heading: #0f172a;
+    /* Slate-900 */
+    --color-border: #e2e8f0;
+    /* Slate-200 */
+    --color-primary: #7c3aed;
+    /* Violet-600 */
+    --color-primary-glow: rgba(124, 58, 237, 0.2);
+    --color-secondary: #2563eb;
+    --glass-blur: 0px;
+    /* Minimal blur for clean light mode */
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--color-text-main);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+#app {
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-glow);
+}
+
+/* Glassmorphism Components */
+.glass-card {
+    background-color: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel {
+    background-color: var(--bg-sidebar);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-right: 1px solid var(--color-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, var(--color-text-heading), var(--color-text-main));
+}
+
+/* Utility classes for direct usage in Vue components */
+.text-heading {
+    color: var(--color-text-heading);
+}
+
+.text-main {
+    color: var(--color-text-main);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.border-glass {
+    border-color: var(--color-border);
+}
+
+/* Autofill Hack */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--bg-body) inset !important;
+    -webkit-text-fill-color: var(--color-text-heading) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
